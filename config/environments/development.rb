@@ -31,7 +31,25 @@ Rails.application.configure do
   config.active_storage.service = :local
 
   # Don't care if the mailer can't send.
-  config.action_mailer.raise_delivery_errors = false
+  config.action_mailer.raise_delivery_errors = true
+
+  # Location of mailer previews
+  config.action_mailer.preview_path = "#{Rails.root}/test/mailers/previews"
+
+  config.action_mailer.default_url_options = {host: "localhost:3000"}
+  config.action_mailer.perform_deliveries = true
+
+  # SMTP settings for gmail
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+    address:   'smtpout.asia.secureserver.net',
+    domain:    'finvisage.com',
+    port:      80,
+    user_name: 'system@finvisage.com',
+    password:  'TechCool@1616',
+    authentication: 'plain'
+  }
+
 
   config.action_mailer.perform_caching = false
 

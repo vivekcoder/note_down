@@ -13,14 +13,20 @@
     .login-show
       h2 LOGIN
       = simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
-        = f.input :login, required: true, autofocus: true, input_html: { autocomplete: "login" }
-        = f.input :password, required: false, input_html: { autocomplete: "current-password" }
+        = f.input :login, required: true, autofocus: true, input_html: { autocomplete: "login", class: 'session-input-text' }
+        = f.input :password, required: true, input_html: { autocomplete: "current-password", class: 'session-input-text' }
         = f.input :remember_me, as: :boolean if devise_mapping.rememberable?
-        a href=""  Forgot password?
         = f.submit "Log in", class: 'session-submit-btn'
+        .row
+          p &nbsp;
+          p &nbsp;
+          p &nbsp;
+          a href=""  Forgot password?
     .register-show
       h2 REGISTER
-      input placeholder="Email" type="text" /
-      input placeholder="Password" type="password" /
-      input placeholder=("Confirm Password") type="password" /
-      input type="button" value="Register" /
+      = simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
+        = f.input :login, required: true, autofocus: true, input_html: { autocomplete: "login", class: 'session-input-text' }
+        = f.input :email, required: true, autofocus: true, input_html: { autocomplete: "email", class: 'session-input-text' }
+        = f.input :password, required: true, input_html: { autocomplete: "current-password", class: 'session-input-text' }
+        = f.input :password_confirmation, required: true, input_html: { autocomplete: "current-password", class: 'session-input-text' }
+        = f.submit "Register", class: 'session-submit-btn'
