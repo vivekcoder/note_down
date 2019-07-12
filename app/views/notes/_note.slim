@@ -1,13 +1,28 @@
-.card.mb-4
-  .card-header
-    h2 = note.title.humanize.truncate(50)
-  .card-body
-    p.card-text = sanitize(note.body.truncate(200))
-    = link_to note_path(note), class: 'btn btn-primary'
-      | Read More
-      | &nbsp;
-      | &rarr;
-  .card-footer.text-muted
+/ .card.mb-4
+/   .card-header
+/     h5 = note.title.humanize.truncate(50)
+/   .card-body
+/     p.card-text = sanitize(note.body.truncate(200))
+/     = link_to note_path(note), class: 'btn btn-primary'
+/       | Read More
+/       | &nbsp;
+/       | &rarr;
+/   .card-footer.text-muted
+/     | Noted on
+/     | &nbsp;
+/     span = note.created_at.strftime('%d/%m/%Y %H:%M %p')
+
+
+.mb-5
+  h4 = note.title.humanize.truncate(50)
+  hr
+  p.card-text = sanitize(note.body.truncate(200))
+  = link_to note_path(note), class: 'btn btn-primary'
+    | Read More
+    | &nbsp;
+    | &rarr;
+  hr
+  .text-muted.pull-right
     | Noted on
     | &nbsp;
     span = note.created_at.strftime('%d/%m/%Y %H:%M %p')

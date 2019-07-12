@@ -4,7 +4,9 @@
     /! Blog Entries Column
     .col-md-8
       h1.my-4
-        | Notebook
+        = "'#{@tag.name}'"
+        | &nbsp;
+        | Notes
       /! Blog Post
       = render @notes
       /! Pagination
@@ -19,7 +21,7 @@
       .card.my-4
         h5.card-header Search notes
         .card-body
-          = search_form_for @q do |f|
+          = search_form_for @q, url: tag_path(@tag) do |f|
             .input-group
               = f.search_field :title_cont, class: 'form-control', placeholder: 'Search for...'
               span.input-group-btn

@@ -6,12 +6,15 @@ class Note < ApplicationRecord
 
   validates :title, :body, :tag_names, presence: true
 
-  attr_accessor :tag_names
+  # attr_accessor :tag_names
 
-  before_save :update_tags
+  def tag_names=(names)
+    self.tags = names.reject(&:blank?).map do |name|
+      Tag.where(name: name.strip).first_or_create!
+    end
+  end
 
-  private
-  def update_tags
-    binding.pry
+  def tag_names
+    tags.map(&:name)
   end
 end
