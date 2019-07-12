@@ -1,0 +1,6 @@
+development:
+  adapter: postgresql
+  encoding: unicode
+  database: note_down_development
+  pool: 5
+  host: localhost
