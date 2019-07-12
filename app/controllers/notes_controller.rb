@@ -4,17 +4,20 @@ class NotesController < ApplicationController
   # GET /notes
   # GET /notes.json
   def index
-    @notes = Note.all
+    @q = current_user.notes.ransack(params[:q])
+    @notes = @q.result.paginate(per_page: 10, page: params[:page])
+    @tags = Tag.first(10)
   end
 
   # GET /notes/1
   # GET /notes/1.json
   def show
+    @tags = @note.tags
   end
 
   # GET /notes/new
   def new
-    @note = Note.new
+    @note = current_user.notes.new
   end
 
   # GET /notes/1/edit
@@ -24,7 +27,7 @@ class NotesController < ApplicationController
   # POST /notes
   # POST /notes.json
   def create
-    @note = Note.new(note_params)
+    @note = current_user.notes.new(note_params)
 
     respond_to do |format|
       if @note.save
@@ -64,11 +67,11 @@ class NotesController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_note
-      @note = Note.find(params[:id])
+      @note = current_user.notes.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def note_params
-      params.fetch(:note, {})
+      params.require(:note).permit([:body, :title])
     end
 end

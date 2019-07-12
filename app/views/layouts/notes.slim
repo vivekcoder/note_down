@@ -1,0 +1,26 @@
+head
+  meta charset="utf-8"
+  meta http="equiv=X-UA-Compatible" content="IE=edge"
+  meta content="width=device-width, initial-scale=1.0" name="viewport"
+  title = content_for?(:title) ? yield(:title) : 'NoteDown'
+
+  = stylesheet_link_tag 'application'
+  = javascript_include_tag 'application'
+
+  = stylesheet_link_tag "page_specific/#{controller_name}"
+  = javascript_include_tag "page_specific/#{controller_name}"
+  = csrf_meta_tags
+  = csp_meta_tag
+body
+  nav.navbar.navbar-expand-lg.navbar-dark.bg-dark.fixed-top
+    .container
+      = link_to 'Note Down', root_path, class: 'navbar-brand'
+      button.navbar-toggler aria-controls="navbarResponsive" aria-expanded="false" aria-label=("Toggle navigation") data-target="#navbarResponsive" data-toggle="collapse" type="button"
+        span.navbar-toggler-icon
+      #navbarResponsive.collapse.navbar-collapse
+        ul.navbar-nav.ml-auto
+          li.nav-item.active
+            = link_to 'Write', new_note_path, class: 'nav-link'
+          li.nav-item
+            = link_to 'Log Out', destroy_user_session_path, method: :delete, class: 'nav-link'
+  = yield

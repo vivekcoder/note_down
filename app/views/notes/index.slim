@@ -1,0 +1,34 @@
+/! Page Content
+.container
+  .row
+    /! Blog Entries Column
+    .col-md-8
+      h1.my-4
+        | Notebook
+      /! Blog Post
+      = render @notes
+      /! Pagination
+      ul.pagination.justify-content-center.mb-4
+        li.page-item
+          a.page-link href="#"  &larr; Older
+        li.page-item.disabled
+          a.page-link href="#"  Newer &rarr;
+    /! Sidebar Widgets Column
+    .col-md-4
+      /! Search Widget
+      .card.my-4
+        h5.card-header Search notes
+        .card-body
+          = search_form_for @q do |f|
+            .input-group
+              = f.search_field :title_cont, class: 'form-control', placeholder: 'Search for...'
+              span.input-group-btn
+                = f.submit 'Go!', class: 'btn btn-secondary'
+      /! Categories Widget
+      .card.my-4
+        h5.card-header Tags
+        .card-body
+          .row
+            - @tags.each do |tag|
+              .col-lg-6
+                = link_to tag.name, root_path
