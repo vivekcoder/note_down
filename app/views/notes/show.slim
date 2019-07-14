@@ -1,30 +1,33 @@
-.container
+
+.container.mt-4
   .row
     /! Blog Entries Column
-    .col-md-12.my-4
-      .card.mb-4
-        .card-header
-          .row
-            .col-10
-              h5 = @note.title.humanize
-            .col-2
-              = link_to 'Edit', edit_note_path(@note)
-              | &nbsp;
-              | &nbsp;
-              | &nbsp;
-              = link_to 'Delete', note_path(@note), method: :delete, class: 'text-danger',
-              data: {confirm: 'Delete this note?'}
+    .col-12
+      .card.mb-3
+        .row.no-gutters
+          .col-9
+            = image_tag('blog_image.png', alt: "Blag Image", class: 'card-img-top', height: 350)
+            .card-body
+              h5.card-title
+                span = @note.title.humanize
+                span.pull-right
+                  = link_to fa_icon('pencil', text: 'Edit', class: 'fa-fw', right: true), edit_note_path(@note)
+                  = link_to fa_icon('times', text: 'Delete', class: 'fa-fw', right: true), note_path(@note), method: :delete, class: 'ml-3 text-danger', data: {confirm: 'Delete this note?'}
 
-          - if @tags.present?
-            .row
+              h6.card-title
+                small.text-muted = "Noted on #{@note.created_at.strftime('%d/%m/%Y %H:%M %p')}"
+              p.card-text = sanitize(@note.body)
+
+          .col-3
+            .row.p-3 style="overflow:scroll;max-height:100vh;"
               .col-12
-                - @tags.each do |tag|
-                  = link_to tag_path(tag) do
-                    span.badge.badge-pill.badge-info.mb-1.mr-1 = tag.name
-
-        .card-body
-          p.card-text = sanitize(@note.body)
-        .card-footer.text-muted
-          | Noted on
-          | &nbsp;
-          span = @note.created_at.strftime('%d/%m/%Y %H:%M %p')
+                - if @tags.blank?
+                  p.text-center No associated tags.
+                - else
+                  .row
+                    - @tags.each do |tag|
+                      .col-12.mb-2
+                        = link_to tag_path(tag) do
+                          p.m-0
+                            span = fa_icon('tag', class: 'text-info fa-fw')
+                            span.badge.badge-info = tag.name

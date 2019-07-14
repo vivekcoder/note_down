@@ -2,21 +2,28 @@
 .container
   .row
     /! Blog Entries Column
-    .col-md-8
-      h1.my-4
-        | Notebook
+    .col-12.col-md-8
+      .row
+        .col-12
+          h3.mt-4 Notebook
+
       /! Blog Post
-      = render @notes
+      .row
+        = render @notes
+
       /! Pagination
-      ul.pagination.justify-content-center.mb-4
-        li.page-item
-          a.page-link href="#"  &larr; Older
-        li.page-item.disabled
-          a.page-link href="#"  Newer &rarr;
+      .row
+        .col-12
+          ul.pagination.justify-content-center.mt-4
+            li.page-item
+              a.page-link href="#"  &larr; Older
+            li.page-item.disabled
+              a.page-link href="#"  Newer &rarr;
+
     /! Sidebar Widgets Column
-    .col-md-4
+    .col-12.col-md-4
       /! Search Widget
-      .card.my-4
+      .card.mt-4
         h5.card-header Search notes
         .card-body
           = search_form_for @q do |f|
@@ -25,11 +32,13 @@
               span.input-group-btn
                 = f.submit 'Go!', class: 'btn btn-secondary'
       /! Categories Widget
-      .card.my-4
+      .card.mt-4
         h5.card-header Tags
-        .card-body
+        .card-body.tag-area_scroll
           .row
             - @tags.each do |tag|
-              .col-lg-6.mb-2
+              .col-12.mb-2
                 = link_to tag_path(tag) do
-                  span.badge.badge-pill.badge-info = tag.name
+                  p.m-0
+                    span = fa_icon('tag', class: 'text-info fa-fw')
+                    span.badge.badge-info = tag.name

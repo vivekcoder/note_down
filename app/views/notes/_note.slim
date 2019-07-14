@@ -1,28 +1,14 @@
-/ .card.mb-4
-/   .card-header
-/     h5 = note.title.humanize.truncate(50)
-/   .card-body
-/     p.card-text = sanitize(note.body.truncate(200))
-/     = link_to note_path(note), class: 'btn btn-primary'
-/       | Read More
-/       | &nbsp;
-/       | &rarr;
-/   .card-footer.text-muted
-/     | Noted on
-/     | &nbsp;
-/     span = note.created_at.strftime('%d/%m/%Y %H:%M %p')
+.col-12.col-md-6
+  .card
+    = image_tag('blog_image.png', alt: "Blag Image", class: 'card-img-top')
 
+    .card-body
+      h5.card-title = note.title.humanize.truncate(50)
+      p.card-text = sanitize( note.body.truncate(200) )
 
-.mb-5
-  h4 = note.title.humanize.truncate(50)
-  hr
-  p.card-text = sanitize(note.body.truncate(200))
-  = link_to note_path(note), class: 'btn btn-primary'
-    | Read More
-    | &nbsp;
-    | &rarr;
-  hr
-  .text-muted.pull-right
-    | Noted on
-    | &nbsp;
-    span = note.created_at.strftime('%d/%m/%Y %H:%M %p')
+    ul.list-group.list-group-flush
+      li.list-group-item
+        small.text-muted = "Noted on #{note.created_at.strftime('%d/%m/%Y %H:%M %p')}"
+
+    .card-body
+      = link_to fa_icon('eye', text: 'Read More', class: 'fa-fw', right: true), note_path(note), class: 'card-link'
