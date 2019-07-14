@@ -32,5 +32,6 @@
         .card-body
           .row
             - @tags.each do |tag|
-              .col-lg-6
-                = link_to tag.name, tag_path(tag)
+              .col-lg-6.mb-2
+                = link_to tag_path(tag) do
+                  span.badge.badge-pill.badge-info = tag.name

@@ -12,8 +12,10 @@ gem 'puma', '~> 3.11'
 # Use SCSS for stylesheets
 gem 'ransack'
 #bootstrap
+gem 'sass-rails'
 gem 'bootstrap', '~> 4.0.0'
-gem 'bootstrap-sass'
+gem 'autoprefixer-rails'#, '~> 8.6.2'
+# jquery
 gem 'jquery-rails'
 
 ## VIEW HELPERS/FRAMEWORKS
@@ -24,7 +26,6 @@ gem 'font-awesome-rails'
 gem 'sprockets'
 gem 'slim'
 gem "slim-rails"
-gem 'sass-rails'
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier'
 # See https://github.com/rails/execjs#readme for more supported runtimes
@@ -64,6 +65,7 @@ group :development do
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
+  gem 'faker', :git => 'https://github.com/stympy/faker.git', :branch => 'master'
 end
 
 group :test do

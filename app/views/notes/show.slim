@@ -14,10 +14,14 @@
               | &nbsp;
               = link_to 'Delete', note_path(@note), method: :delete, class: 'text-danger',
               data: {confirm: 'Delete this note?'}
-          .row
-            - if @tags.present?
-              span
-                small = "(#{@tags.pluck(:name).join(',')})"
+
+          - if @tags.present?
+            .row
+              .col-12
+                - @tags.each do |tag|
+                  = link_to tag_path(tag) do
+                    span.badge.badge-pill.badge-info.mb-1.mr-1 = tag.name
+
         .card-body
           p.card-text = sanitize(@note.body)
         .card-footer.text-muted
