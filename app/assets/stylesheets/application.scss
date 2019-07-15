@@ -8,3 +8,9 @@
 .tag-area_scroll {
 	max-height: 50vh;overflow: scroll;
 }
+
+.loading, .pagination {
+  width: 100px;
+  margin: 5% 0 0 50%;
+  opacity: 0.6;
+}
