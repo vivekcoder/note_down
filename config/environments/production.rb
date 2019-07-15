@@ -65,6 +65,19 @@ Rails.application.configure do
 
   config.action_mailer.perform_caching = false
 
+  config.action_mailer.default_url_options = {host: "https://notedownvt.herokuapp.com"}
+  config.action_mailer.perform_deliveries = true
+
+  # SMTP settings for gmail
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+    address:   'smtpout.asia.secureserver.net',
+    domain:    'finvisage.com',
+    port:      80,
+    user_name: 'system@finvisage.com',
+    password:  'TechCool@1616',
+    authentication: 'plain'
+  }
   # Ignore bad email addresses and do not raise email delivery errors.
   # Set this to true and configure the email server for immediate delivery to raise delivery errors.
   # config.action_mailer.raise_delivery_errors = false
