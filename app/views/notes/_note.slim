@@ -3,7 +3,7 @@
     = image_tag('blog_image.png', alt: "Blag Image", class: 'card-img-top')
 
     .card-body
-      h5.card-title = note.title.humanize.truncate(50)
+      h5.card-title.text-truncate = note.title.humanize
       p.card-text = sanitize( note.body.truncate(200) )
 
     ul.list-group.list-group-flush
