@@ -13,12 +13,11 @@
 
       /! Pagination
       .row
-        .col-12
-          ul.pagination.justify-content-center.mt-4
-            li.page-item
-              a.page-link href="#"  &larr; Older
-            li.page-item.disabled
-              a.page-link href="#"  Newer &rarr;
+        - if @notes.next_page.present?
+          .loading.text-center
+            i.fa.fa-spin.fa-spinner
+        = will_paginate @notes
+
 
     /! Sidebar Widgets Column
     .col-12.col-md-4
