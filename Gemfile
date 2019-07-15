@@ -13,7 +13,7 @@ gem 'puma', '~> 3.11'
 gem 'ransack'
 #bootstrap
 gem 'sass-rails'
-gem 'bootstrap', '~> 4.0.0'
+gem 'bootstrap', '~> 4.3.1'
 gem 'autoprefixer-rails'#, '~> 8.6.2'
 # jquery
 gem 'jquery-rails'

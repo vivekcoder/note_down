@@ -16,11 +16,12 @@
 //= require activestorage
 // require turbolinks
 // require_tree .
+//= require popper
 //= require bootstrap-sprockets
 // require bootstrap-datepicker
+
 $(function(){
-  if($('.pagination').length)
-  {
+  if($('.pagination').length) {
     $(window).scroll(function () {
       url = $('.pagination .next_page').attr('href');
       if (url && $(window).scrollTop() >= $(document).height() - $(window).height() - 600) {
