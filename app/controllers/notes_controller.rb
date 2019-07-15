@@ -5,7 +5,7 @@ class NotesController < ApplicationController
   # GET /notes.json
   def index
     @q = current_user.notes.ransack(params[:q])
-    @notes = @q.result.paginate(per_page: 2, page: params[:page])
+    @notes = @q.result.paginate(per_page: 6, page: params[:page])
     @tags = Tag.first(10)
 
     respond_to do |format|
